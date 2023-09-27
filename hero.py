@@ -2,6 +2,7 @@ import random
 from Opponent import Opponent
 from ability import Ability
 from armor import Armor
+from weapon import Weapon
 
 class Hero:
     def __init__(self, name, starting_health=100):
@@ -51,6 +52,11 @@ class Hero:
             #add block value of each armor to the total
             total_armor += armor.block()
         return total_armor
+    def add_weapon(self, weapon):
+    # This method will append the weapon object passed in as an
+    # argument to self.abilities.
+    # This means that self.abilities will be a list of
+    # abilities and weapons.
     def take_damage(self, damage):
         #call self.defend to calc damage reduction
         damage_reduction = self.defend(damage)
@@ -66,7 +72,8 @@ class Hero:
         self.current_health -= actual_damage
         return actual_damage
     def is_alive(self):
-            return self.current_health > 0  
+            return self.current_health > 0 
+
 
 
 
@@ -87,6 +94,8 @@ if __name__ == "__main__":
     opponent = Opponent("Monkey Man", 150)
     hero.fight(opponent)
     ###### simulate attack
+
+
 
     
     
