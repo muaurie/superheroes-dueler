@@ -3,6 +3,5 @@ import random
 
 class Weapon(Ability):
      def attack(self):
-        self.max_damage/2
-        random_value = random.randint(0, self.max_damage)
+        random_value = random.randint(self.max_damage/2, self.max_damage)
         return random_value
