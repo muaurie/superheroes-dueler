@@ -1,4 +1,5 @@
-from hero import Hero
+from hero_class import Hero
+import random
 #team class will manage all of our superheros
 class Team:
     def __init__(self, name):
@@ -9,6 +10,7 @@ class Team:
         '''if hero isn't found return zero'''
         #if hero in list, remove hero from list by name
         for hero in self.heroes:
+            #make sure it is correct hero
             if hero.name == name:
                 self.heroes.remove(hero)
                 foundHero = True
@@ -23,3 +25,42 @@ class Team:
         '''Add hero object to self.heroes'''
         #add hero object that is passed into list of heroes in self.heroes
         self.heroes.append(hero)
+    def stats(self):
+        #print hero statistics
+      for hero in self.heroes:
+            kd = hero.kills / hero.deaths
+            print(f"{hero.name} Kill/Deaths:{kd}")
+    def revive_heroes(self, health):
+    #reset all heroes health to starting_health
+        for hero in self.heroes:
+            hero.current_health = health
+            print(f"{hero.name} has been revived!")
+    def attack(self, other_team):
+        #battle teams 
+        living_heroes = list(self.heroes)
+        living_opponents = list(self.opponent)
+        for hero in self.heroes:
+            living_heroes.append(hero)
+        for hero in other_team.heroes:
+            living_opponents.append(hero)
+        while len(living_heroes) > 0 and len(living_opponents) > 0:
+            #1) randomly select living hero from ea. team
+            hero1 = random.choice(living_heroes)
+            hero2 = random.choice(living_opponents)
+            #fight ea. other
+            hero1.fight(hero2)
+        #update list/fight to the death
+        if hero1.is_alive():
+            living_heroes.remove(hero1)
+        else:
+            living_opponents.remove(hero2) #hero2 lost the battle 
+        
+        if hero2.is_alive():
+            living_heroes.remove(hero2)
+        else:
+            living_opponents.remove(hero1) #hero1 lost the battle
+        ######Complete the following steps:
+      # 1) Randomly select a living hero from each team (hint: look up what random.choice does)
+      # 2) have the heroes fight each other (Hint: Use the fight method in the Hero class.)
+      # 3) update the list of living_heroes and living_opponents
+      # to reflect the result of the fight

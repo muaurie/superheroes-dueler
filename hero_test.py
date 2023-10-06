@@ -4,7 +4,7 @@ import sys
 from ability import Ability
 from weapon import Weapon
 from armor import Armor
-from hero import Hero
+from hero_class import Hero
 from team import Team
 import math
 import random
